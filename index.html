@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JK's Store - Sneakers & Style</title>
+    <link rel="icon" href="img/logo.png">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Poppins", sans-serif;
+        }
+
+        body {
+            background: radial-gradient(circle at top, #0a0a0f, #000);
+            color: #f5f5f5;
+            overflow-x: hidden;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(15, 15, 30, 0.8);
+            backdrop-filter: blur(8px);
+            text-align: center;
+            padding: 1.8rem 1rem;
+            box-shadow: 0 0 20px rgba(108, 99, 255, 0.4);
+            border-bottom: 1px solid rgba(108, 99, 255, 0.3);
+        }
+
+        header h1 {
+            font-size: 2.6rem;
+            background: linear-gradient(90deg, #6c63ff, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 3px;
+            animation: glow 3s infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px #6c63ff;
+            }
+
+            to {
+                text-shadow: 0 0 20px #00d4ff, 0 0 40px #6c63ff;
+            }
+        }
+
+        header p {
+            color: #ccc;
+            font-size: 1rem;
+            margin-top: 0.3rem;
+        }
+
+        .parallax {
+            background-image: url('img/loja.png');
+            height: 420px;
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        .parallax::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.6), #0e0e0e);
+        }
+
+        .parallax h2 {
+            position: relative;
+            font-size: 2.4rem;
+            color: #fff;
+            text-shadow: 0 0 15px #6c63ff;
+            z-index: 2;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 10px 25px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .produtos {
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .produtos h2 {
+            color: #00d4ff;
+            font-size: 2rem;
+            text-shadow: 0 0 10px #6c63ff;
+            margin-bottom: 2rem;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: rgba(25, 25, 40, 0.8);
+            border: 1px solid rgba(108, 99, 255, 0.3);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 0 25px rgba(108, 99, 255, 0.1);
+            transition: all 0.4s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.03);
+            box-shadow: 0 0 30px rgba(108, 99, 255, 0.6);
+        }
+
+        .card img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            filter: brightness(0.9) contrast(1.1);
+            transition: 0.4s;
+        }
+
+        .card:hover img {
+            filter: brightness(1.1) saturate(1.2);
+        }
+
+        .card h3 {
+            margin-top: 1rem;
+            color: #6c63ff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .card p {
+            font-size: 0.9rem;
+            color: #ccc;
+            margin: 0.5rem 0 1.5rem 0;
+        }
+
+        .oferta {
+            background: linear-gradient(90deg, #6c63ff, #00d4ff);
+            color: #fff;
+            padding: 2rem;
+            text-align: center;
+            margin: 4rem 0;
+            box-shadow: 0 0 30px rgba(108, 99, 255, 0.4);
+            border-radius: 10px;
+            animation: brilho 4s infinite alternate;
+        }
+
+        @keyframes brilho {
+            from {
+                filter: brightness(1);
+            }
+
+            to {
+                filter: brightness(1.3);
+            }
+        }
+
+        .galeria {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .galeria h2 {
+            color: #00d4ff;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .imagens {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+        }
+
+        .imagens img {
+            width: 100%;
+            border-radius: 15px;
+            transition: 0.4s;
+            filter: brightness(0.9);
+        }
+
+        .imagens img:hover {
+            transform: scale(1.07);
+            box-shadow: 0 0 25px rgba(108, 99, 255, 0.6);
+            filter: brightness(1.1);
+        }
+
+        .progresso {
+            margin: 4rem auto;
+            width: 80%;
+            text-align: center;
+        }
+
+        .progresso h3 {
+            margin-bottom: 0.8rem;
+            color: #6c63ff;
+            text-shadow: 0 0 10px #6c63ff;
+        }
+
+        progress {
+            width: 70%;
+            height: 25px;
+            accent-color: #00d4ff;
+            border-radius: 10px;
+        }
+
+        details {
+            background: rgba(25, 25, 40, 0.9);
+            padding: 1.2rem;
+            border-radius: 12px;
+            width: 80%;
+            margin: 2.5rem auto;
+            box-shadow: 0 0 20px rgba(108, 99, 255, 0.2);
+        }
+
+        summary {
+            font-size: 1.3rem;
+            color: #00d4ff;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        summary:hover {
+            color: #6c63ff;
+        }
+
+        details p {
+            margin-top: 10px;
+            color: #bbb;
+            line-height: 1.6;
+        }
+
+        footer {
+            background: #0a0a0f;
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(108, 99, 255, 0.3);
+            font-size: 0.9rem;
+            color: #aaa;
+            letter-spacing: 0.5px;
+        }
+
+        footer p {
+            margin-top: 0.5rem;
+        }
+
+        body {
+            cursor: url('img/shoe-cursor.png') 16 16, auto;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .parallax h2 {
+                font-size: 1.7rem;
+                padding: 8px 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>JK's Store</h1>
+        <p>Exclusividade. Estilo. Futuro.</p>
+    </header>
+
+    <div class="parallax">
+        <h2>Os sneakers mais exclusivos do mundo estão aqui</h2>
+    </div>
+
+    <section class="produtos">
+        <h2>Nossos Destaques</h2>
+        <div class="cards">
+            <div class="card">
+                <img src="img/shoe1.png" alt="Yeezy Foam Runner">
+                <h3>Yeezy Foam Runner</h3>
+                <p>Design futurista e conforto extremo.</p>
+            </div>
+            <div class="card">
+                <img src="img/shoe2.png" alt="Bota Timberland">
+                <h3>Timberland 6” Premium</h3>
+                <p>Clássico urbano com toque moderno.</p>
+            </div>
+            <div class="card">
+                <img src="img/birken.png" alt="Birkenstock Boston">
+                <h3>Birkenstock Boston</h3>
+                <p>Minimalismo e autenticidade para o dia a dia.</p>
+            </div>
+            <div class="card">
+                <img src="img/dunk.png" alt="Nike SB Dunk">
+                <h3>Nike SB Dunk</h3>
+                <p>O símbolo supremo do streetwear.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="oferta">
+        <h2>⚡ Oferta Relâmpago: 20% OFF em todos os sneakers premium!</h2>
+    </div>
+
+    <section class="galeria">
+        <h2>Galeria</h2>
+        <div class="imagens">
+            <img src="img/travis.png" alt="Travis Scott 1">
+            <img src="img/travis2.png" alt="Travis Scott 2">
+            <img src="img/timbs.png" alt="Timberland">
+            <img src="img/futures.png" alt="Future sneakers">
+        </div>
+    </section>
+
+    <section class="progresso">
+        <h3>Nível de Satisfação dos Clientes</h3>
+        <progress value="95" max="100"></progress>
+        <p>95% de aprovação!</p>
+    </section>
+
+    <details>
+        <summary>Sobre a JK's Store</summary>
+        <p>A <strong>JK's Store</strong> é mais que uma loja — é um movimento. Inspirada pela cultura sneaker e pelo design futurista, trazemos peças exclusivas que representam atitude, conforto e autenticidade. Cada par conta uma história. Cada detalhe reflete o futuro do estilo.</p>
+    </details>
+
+    <footer>
+        <p>© 2025 JK's Store — Exclusividade que define o seu passo.</p>
+    </footer>
+
+</body>
+
+</html>
